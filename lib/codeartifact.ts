@@ -9,15 +9,7 @@ export class CodeArtifact extends Construct {
     // CodeArtifact domain
     const codeArtifactDomain = new codeartifact.CfnDomain(this, 'Domain', {domainName: 'yoyoyo-pg'});
     // Maven Repo
-    const MavenCentralRepo = new codeartifact.CfnRepository(this, 'MavenCentral', {
-      repositoryName: 'maven-central-store',
-      description: 'Provides Maven artifacts from Maven Central Repository.',
-      externalConnections: ['public:maven-central'],
-      domainName: codeArtifactDomain.attrName,
-    });
-    // Maven Repo
     const MavenPrivateRepo = new codeartifact.CfnRepository(this, 'GradleSample', {
-      upstreams: [MavenCentralRepo.attrName],
       repositoryName: 'gradle-publish-sample',
       description: 'gradle publish repository',
       domainName: codeArtifactDomain.attrName,
